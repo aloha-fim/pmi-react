@@ -7,4 +7,24 @@ services:
     links:
       - db
   db:
-    build: ./db
+      image: 'mongo'
+      container_name: 'my-mongo-container'
+      # restart: always
+      environment:
+          MONGO_INITDB_ROOT_USERNAME: frederecim
+          MONGO_INITDB_ROOT_PASSWORD: kell2427
+          MONGO_INITDB_DATABASE: SimilarityDB
+      volumes:
+          - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js
+          - ./mongo-volume:/data/db
+      ports:
+          - '27017-27019:27017-27019'
+  #db:
+  #  build: ./db
+
+    #env_file:
+    #  - ./database.env
+   # volumes:
+   #   - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js
+   #   - ./db:/data/db
+   #   - ./dump:/data/dump

@@ -6,6 +6,10 @@ import bcrypt
 app = Flask(__name__)
 api = Api(app)
 
+
+#client = MongoClient("mongodb+srv://frederecim:kell2427@cluster0.ycjhlwt.mongodb.net/?retryWrites=true&w=majority")
+#db = client.test
+
 client = MongoClient("mongodb://db:27017")
 db = client.SimilarityDB
 users = db["Users"]
